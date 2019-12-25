@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CarouselSliderImageUpload_Demo.Models.CarouselSlider>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h4 class="text-center text-uppercase">List of carousel slider</h4>
+
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-plus-circle"></i> Add New</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ImageName)</th>
+            <th>@Html.DisplayNameFor(model => model.ImagePath)</th>
+            <th style="width:50%;">@Html.DisplayNameFor(model => model.Description)</th>
+            <th>Action(s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var carouselSlider in Model)
+        {
+            <tr>
+                <td>@carouselSlider.ImageName</td>
+                <td><img src="~/images/@carouselSlider.ImagePath" class="img-thumbnail" height="100" width="100" asp-append-version="true" /></td>
+                <td>@carouselSlider.Description</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@carouselSlider.Id" class="btn btn-sm btn-primary rounded-0"><i class="fas fa-eye"></i></a>
+                    <a asp-action="Edit" asp-route-id="@carouselSlider.Id" class="btn btn-sm btn-info rounded-0"><i class="fas fa-edit"></i></a>
+                    <a asp-action="Delete" asp-route-id="@carouselSlider.Id" class="btn btn-sm btn-danger rounded-0"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,42 @@
+﻿@model CarouselSliderImageUpload_Demo.ViewModels.CarouselSliderViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container py-4">
+    <div class="card">
+        <div class="card-header bg-primary text-uppercase text-white">
+            <h4>Delete Carousel Slider</h4>
+        </div>
+        <div class="card-body">
+            <h3 class="alert alert-danger">Are you sure want to delete this?</h3>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ImageName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="~/images/@Model.ExistingImage" class="img-thumbnail" height="100" width="100" asp-append-version="true" />
+                </dd>
+            </dl>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Delete" class="btn btn-sm btn-danger btn-danger text-uppercase rounded-0" />
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-info text-uppercase rounded-0">Edit</a>
+                <a asp-action="Index" class="btn btn-sm btn-primary text-uppercase rounded-0"><i class="fas fa-fast-backward"></i> Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>
