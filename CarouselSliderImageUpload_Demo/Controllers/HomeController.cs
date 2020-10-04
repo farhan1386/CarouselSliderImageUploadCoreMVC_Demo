@@ -153,8 +153,16 @@ namespace CarouselSliderImageUpload_Demo.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var carouselSlider = await dbContext.CarouselSliders.FindAsync(id);
+            var CurrentImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", carouselSlider.ImagePath);
             dbContext.CarouselSliders.Remove(carouselSlider);
-            await dbContext.SaveChangesAsync();
+            if (await dbContext.SaveChangesAsync() > 0)
+            {
+                if (System.IO.File.Exists(CurrentImage))
+                {
+                    System.IO.File.Delete(CurrentImage);
+                }
+            }
+
             return RedirectToAction(nameof(Index));
         }
 
